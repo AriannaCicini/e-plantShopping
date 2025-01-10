@@ -8,15 +8,22 @@ export const CartSlice = createSlice({
   reducers: {
     // Add item to cart
     addItem: (state, action) => {
+        const product = action.payload;  // Prendi il prodotto passato in payload
         console.log("Adding to cart:", product);
-      const { name, image, cost } = action.payload;
-      const existingItem = state.items.find(item => item.name === name);
-      if (existingItem) {
-        existingItem.quantity++;  // Increment quantity if item exists
-      } else {
-        state.items.push({ name, image, cost, quantity: 1 });  // Add new item if it doesn't exist
-      }
-    },
+    debugger
+        const { name, image, cost } = product;  // Estrai le informazioni necessarie dal prodotto
+    
+        // Verifica se il prodotto esiste già nel carrello
+        const existingItem = state.items.find(item => item.name === name);
+    
+        if (existingItem) {
+          // Se il prodotto esiste già, incrementa la quantità
+          existingItem.quantity++;
+        } else {
+          // Se il prodotto non esiste, aggiungi un nuovo prodotto con quantità 1
+          state.items.push({ name, image, cost, quantity: 1 });
+        }
+      },
     
     // Remove item from cart
     removeItem: (state, action) => {
