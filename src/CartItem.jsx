@@ -14,9 +14,10 @@ const CartItem = ({ onContinueShopping }) => {
     };
   
     // Function for handling "Continue Shopping" button click
-    const handleContinueShopping = () => {
-      onContinueShopping();  // Call the passed-in function to navigate back to the product list
-    };
+    const handleContinueShopping = (event) => {
+        event.preventDefault();  // Aggiungi preventDefault qui
+        onContinueShopping();  // Chiamata alla funzione di navigazione
+      };
   
     // Function to increment the quantity of an item
     const handleIncrement = (item) => {

@@ -8,9 +8,11 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
+   
     const handleAddToCart = (product) => {
         console.log("Adding to cart:", product);
         dispatch(addItem(product));
+        
         setAddedToCart((prevState) => ({
            ...prevState,
            [product.name]: true,
@@ -290,7 +292,13 @@ const handlePlantsClick = (e) => {
                 <div className="product-title">{plant.name}</div>
                 <div className="product-description">{plant.description}</div>
                 <div className="product-cost">{plant.cost}</div>
-                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                {addedToCart ? (
+        <span className="added-message">Added to Cart</span>
+      ) : (
+        <button className="product-button" onClick={handleButtonClick}>
+          Add to Cart
+        </button>
+      )}
             </div>
             ))}
         </div>
