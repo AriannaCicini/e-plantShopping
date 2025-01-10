@@ -8,6 +8,7 @@ function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
 
     const handleAddToCart = (product) => {
+        console.log("Adding to cart:", product);
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
            ...prevState,
